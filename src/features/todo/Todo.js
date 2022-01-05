@@ -33,9 +33,10 @@ export function Todo() {
     return (
         <div>
             <div><h2>Today</h2></div>
-            <div className={styles.objectives}>
+            <div className={styles.objectives} data-test-id="todo-objectives">
                 {R.map(objective => (
                     <TodoCard
+                        data-test-id={`todo-objective-${objective.id}`}
                         key={objective.id} 
                         objective={objective}
                         onComplete={handleCompleteObjective}
@@ -45,12 +46,14 @@ export function Todo() {
             </div>
             <div className={styles.row}>
                 <input
+                    data-test-id="todo-input"
                     className={styles.textbox}
                     aria-label="Add objective"
                     value={newObjectiveText}
                     onChange={(e) => setNewObjectiveText(e.target.value)}
                     />
                 <button
+                    data-test-id="todo-add"
                     className={styles.button}
                     onClick={handleCreateObjective}
                     >

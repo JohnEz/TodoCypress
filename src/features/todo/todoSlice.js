@@ -4,7 +4,7 @@ import * as R from 'ramda';
 const initialState = {
   objectives: [
     {
-      id: -1,
+      id: 0,
       text: "Example objective",
       isComplete: false,
     }
@@ -13,7 +13,7 @@ const initialState = {
 
 const isMatchingObjective = (objective, id) => objective.id === id;
 
-let uuid = 0;
+let uuid = 1;
 
 export const todoSlice = createSlice({
   name: 'todo',
