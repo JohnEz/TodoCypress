@@ -2,7 +2,14 @@ import React from 'react';
 import styles from './TodoCard.module.css';
 
 
-export function TodoCard({objective, onDelete, onComplete}) {
+export function TodoCard(props) {
+
+    const {
+        objective, 
+        onDelete, 
+        onComplete, 
+        "data-test-id": dataTestId,
+    } = props;
 
     const handleComplete = (e) => {
         console.log({e});
@@ -14,7 +21,7 @@ export function TodoCard({objective, onDelete, onComplete}) {
     }
 
     return (
-        <div className={styles.card}>
+        <div className={styles.card} data-test-id={dataTestId}>
             <div className={`${styles.fit} ${styles.container}`}>                
                 <input
                     className={styles.checkbox}
