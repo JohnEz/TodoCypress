@@ -16,7 +16,10 @@ export function Todo() {
     const [newObjectiveText, setNewObjectiveText] = useState('');
     const dispatch = useDispatch();
 
-    const handleCreateObjective = () => {
+    const handleCreateObjective = (e) => {
+        // stop page reload
+        e.preventDefault();
+
         dispatch(add({text: newObjectiveText}))
         setNewObjectiveText('');
     }
@@ -30,35 +33,36 @@ export function Todo() {
         dispatch(remove({id}));
     }
 
+    const remainingTasksCount = R.filter(objective => !objective.isComplete, objectives).length;
+
+    const statsText = remainingTasksCount === 1 ? '1 item left' : `${remainingTasksCount} items left`;
+
     return (
-        <div>
-            <div><h2>Today</h2></div>
-            <div className={styles.objectives} data-test-id="todo-objectives">
-                {R.map(objective => (
-                    <TodoCard
-                        data-test-id={`todo-objective-${objective.id}`}
-                        key={objective.id} 
-                        objective={objective}
-                        onComplete={handleCompleteObjective}
-                        onDelete={handleDeleteObjective}
-                    />
-                ), objectives)}
-            </div>
-            <div className={styles.row}>
-                <input
-                    data-test-id="todo-input"
-                    className={styles.textbox}
-                    aria-label="Add objective"
-                    value={newObjectiveText}
-                    onChange={(e) => setNewObjectiveText(e.target.value)}
-                    />
-                <button
-                    data-test-id="todo-add"
-                    className={styles.button}
-                    onClick={handleCreateObjective}
-                    >
-                    Add Objective
-                </button>
+        <div data-test-id="todo">
+            <div><h2 className={styles.title}>Todo</h2></div>
+            <div className={styles.body}>
+                <form onSubmit={handleCreateObjective}>
+                    <input
+                        data-test-id="todo-input"
+                        className={styles.textbox}
+                        placeholder='What do you need to do?'
+                        aria-label="Add objective"
+                        value={newObjectiveText}
+                        onChange={(e) => setNewObjectiveText(e.target.value)}
+                        />
+                </form>
+                <div className={styles.objectives} data-test-id="todo-objectives">
+                    {R.map(objective => (
+                        <TodoCard
+                            data-test-id={`todo-objective-${objective.id}`}
+                            key={objective.id} 
+                            objective={objective}
+                            onComplete={handleCompleteObjective}
+                            onDelete={handleDeleteObjective}
+                        />
+                    ), objectives)}
+                </div>
+                <div data-test-id="todo-counter" className={styles.stats}>{statsText}</div>
             </div>
         </div>
     )
