@@ -2,13 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import * as R from 'ramda';
 
 const initialState = {
-  objectives: [
-    {
-      id: 0,
-      text: "Example objective",
-      isComplete: false,
-    }
-  ]
+  objectives: []
 };
 
 const isMatchingObjective = (objective, id) => objective.id === id;

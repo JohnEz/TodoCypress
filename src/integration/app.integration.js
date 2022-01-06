@@ -7,7 +7,7 @@ describe('src/app', () => {
     })
 
     it('loads the app', () => {
-        cy.get('.App-header').should('have.length', 1);
+        cy.getByTestId('app').should('have.length', 1);
     })
 
 })

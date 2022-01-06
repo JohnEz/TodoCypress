@@ -22,8 +22,9 @@ export function TodoCard(props) {
 
     return (
         <div className={styles.card} data-test-id={dataTestId}>
-            <div className={`${styles.fit} ${styles.container}`}>                
+            <div className={`${styles.fit} ${styles.container} ${styles.completeButton}`}>                
                 <input
+                    data-test-id={`${dataTestId}-complete`}
                     className={styles.checkbox}
                     type="checkbox"
                     value="Complete"
@@ -31,11 +32,12 @@ export function TodoCard(props) {
                     onChange={handleComplete}
                     />
             </div>
-            <div className={styles.fill}>
+            <div className={`${styles.fill} ${styles.container}`}>
                 <label className={styles.value}>{objective.text}</label>
             </div>
             <div className={`${styles.fit} ${styles.container}`}>
                     <button
+                    data-test-id={`${dataTestId}-delete`}
                     className={styles.deleteButton}
                         onClick={handleDelete} 
                     >X</button>

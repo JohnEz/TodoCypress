@@ -11,5 +11,5 @@ test('renders todo list', () => {
     </Provider>
   );
 
-  expect(getByText(/Today/i)).toBeInTheDocument();
+  expect(getByText(/Todo/i)).toBeInTheDocument();
 });

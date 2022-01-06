@@ -4,10 +4,8 @@ import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
+    <div className="App" data-test-id="app">
         <Todo />
-      </header>
     </div>
   );
 }
