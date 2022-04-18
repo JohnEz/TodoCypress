@@ -89,5 +89,4 @@ describe("src/features/todo", () => {
 
 		//cy.screenshot();
 	});
-	
 });
